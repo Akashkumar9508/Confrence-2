@@ -23,6 +23,7 @@ import { QRCodeCanvas } from 'qrcode.react';
 import { conferenceData } from '../data/conferenceData';
 import CountdownTimer from '../components/CountdownTimer';
 import ranchiCollage from '../assets/ranchi-collage.jpg';
+import logoImg from '../assets/logo.png';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function Home() {
   const [copiedField, setCopiedField] = useState(null);
   const [activeModalQr, setActiveModalQr] = useState(null);
 
-  const upiPayUrl = `upi://pay?pa=${conferenceData.bankDetails.upiId}&pn=${encodeURIComponent(conferenceData.bankDetails.accountName)}&am=4000.00&cu=INR&tn=EZPRC2026`;
+  const upiPayUrl = `upi://pay?pa=${conferenceData.bankDetails.upiId}&pn=${encodeURIComponent(conferenceData.bankDetails.accountName)}&am=2500.00&cu=INR&tn=EZPRC2026`;
 
   const handleCopy = (text, fieldName) => {
     navigator.clipboard.writeText(text);
@@ -70,10 +71,24 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto space-y-6 relative z-10">
           
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-center mb-2"
+          >
+            <img 
+              src={logoImg} 
+              alt="EZPRC Logo" 
+              className="h-32 sm:h-40 md:h-48 w-auto object-contain drop-shadow-md rounded-2xl" 
+            />
+          </motion.div>
+
           {/* Highlight Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
             className="inline-block"
           >
             <span className="bg-brand-100 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300 text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full border border-brand-200/50 dark:border-brand-900/30 uppercase tracking-widest shadow-sm">
@@ -213,48 +228,59 @@ export default function Home() {
               {conferenceData.invitationClosing}
             </p>
 
-            {/* Letter Footer (Dr. Neha Singh Card) */}
-            <div className="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
-              
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-400 bg-slate-800 shrink-0 shadow-md">
-                  <img
-                    src={conferenceData.organisingCommittee[0].image}
-                    alt={conferenceData.organisingCommittee[0].name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div>
-                  <h5 className="font-display font-extrabold text-sm sm:text-base text-indigo-950 dark:text-white uppercase leading-none">
-                    {conferenceData.organisingCommittee[0].name}
-                  </h5>
-                  <p className="text-[10px] text-brand-600 dark:text-accent-400 font-bold uppercase tracking-wider mt-1.5 leading-none">
-                    {conferenceData.organisingCommittee[0].role}
-                  </p>
-                  <p className="text-[9px] text-slate-400 dark:text-slate-500 mt-1 uppercase font-semibold">
-                    EZPRC 2026 Organising Secretary
-                  </p>
-                </div>
-              </div>
-
-              {/* Call / Contact details */}
-              <div className="flex flex-col gap-2 shrink-0 bg-slate-50 dark:bg-brand-950/30 border border-slate-150 dark:border-brand-900/20 p-4 rounded-2xl w-full sm:w-auto">
-                <span className="text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-extrabold block">Organising Secretariat</span>
-                <a 
-                  href={`tel:${conferenceData.contactNumber}`} 
-                  className="flex items-center gap-2 font-display font-black text-sm text-indigo-950 dark:text-white hover:text-brand-500 transition-colors"
+            {/* Letter Footer (Organising Committee Cards) */}
+            <div className="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {conferenceData.organisingCommittee.map((member, idx) => (
+                <div 
+                  key={idx} 
+                  className="flex flex-col items-center text-center gap-5 p-6 rounded-2xl bg-slate-50/50 dark:bg-brand-950/15 border border-slate-100 dark:border-brand-900/10 shadow-sm"
                 >
-                  <FiPhone className="text-brand-500" /> +91 {conferenceData.contactNumber}
-                </a>
-                <button
-                  onClick={handleWhatsAppInquiry}
-                  className="flex items-center justify-center gap-1.5 px-3 py-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded-xl transition-all cursor-pointer border-none shadow-sm"
-                >
-                  <FaWhatsapp size={14} /> Contact on WhatsApp
-                </button>
-              </div>
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-brand-400 bg-slate-100 dark:bg-brand-950/60 flex items-center justify-center shrink-0 shadow-md">
+                      {member.image ? (
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <FiUser className="w-10 h-10 text-brand-600 dark:text-accent-400" />
+                      )}
+                    </div>
+                    <div className="space-y-1">
+                      <h5 className="font-display font-extrabold text-base text-indigo-950 dark:text-white uppercase leading-none">
+                        {member.name}
+                      </h5>
+                      <p className="text-[11px] text-brand-600 dark:text-accent-400 font-bold uppercase tracking-wider leading-none">
+                        {member.role}
+                      </p>
+                    </div>
+                  </div>
 
+                  {/* Call / Contact details */}
+                  <div className="flex flex-col gap-2 shrink-0 bg-white dark:bg-darkbg-card border border-slate-150 dark:border-brand-900/20 p-4 rounded-xl w-full max-w-xs shadow-inner">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-extrabold block text-center">
+                      {member.role === "Organising Secretary" ? "Organising Secretariat" : "Co-Organising Secretariat"}
+                    </span>
+                    <a 
+                      href={`tel:${member.phone}`} 
+                      className="flex items-center justify-center gap-2 font-display font-black text-sm text-indigo-950 dark:text-white hover:text-brand-500 transition-colors"
+                    >
+                      <FiPhone className="text-brand-500" /> +91 {member.phone.replace(/(\d{5})(\d{5})/, '$1 $2')}
+                    </a>
+                    <button
+                      onClick={() => {
+                        const message = `Hi, I am interested in the 3rd East Zone Paediatric Rheumatology Conference (EZPRC 2026). Please share more details.`;
+                        window.open(`https://wa.me/91${member.phone}?text=${encodeURIComponent(message)}`, '_blank');
+                      }}
+                      className="flex items-center justify-center gap-1.5 px-3 py-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded-xl transition-all cursor-pointer border-none shadow-sm"
+                    >
+                      <FaWhatsapp size={14} /> Contact on WhatsApp
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>
@@ -428,15 +454,6 @@ export default function Home() {
                 </li>
               </ul>
 
-              {/* Special Accomodation Promo Box */}
-              <div className="p-4 rounded-2xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30 text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
-                <div className="flex gap-2 items-start">
-                  <FiInfo size={16} className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                  <p>
-                    <strong>Special Accommodation Offer:</strong> {conferenceData.registrationFees.specialOffer}
-                  </p>
-                </div>
-              </div>
             </div>
 
             {/* Direct Form Trigger Button */}
@@ -535,37 +552,77 @@ export default function Home() {
             {/* Bank details bar at the bottom */}
             <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
               <h4 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center">Bank Account Transfer Details</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50 dark:bg-brand-950/15 p-4 rounded-xl border border-slate-100 dark:border-brand-900/10">
-                <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs bg-slate-50 dark:bg-brand-950/15 p-4 rounded-xl border border-slate-100 dark:border-brand-900/10">
+                <div className="sm:col-span-2">
                   <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">Account Name</span>
                   <strong className="text-slate-800 dark:text-slate-200 font-semibold">{conferenceData.bankDetails.accountName}</strong>
                 </div>
-                <div>
-                  <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">Bank Name</span>
-                  <strong className="text-slate-800 dark:text-slate-200 font-semibold">{conferenceData.bankDetails.bankName}</strong>
+                <div className="sm:col-span-2">
+                  <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">Bank Name & Branch</span>
+                  <strong className="text-slate-800 dark:text-slate-200 font-semibold">{conferenceData.bankDetails.bankName} ({conferenceData.bankDetails.branch})</strong>
                 </div>
-                <div className="pt-1.5 border-t sm:border-t-0 sm:border-r border-slate-200/50 dark:border-slate-800 flex justify-between items-center sm:pr-4">
+                <div className="sm:col-span-2">
+                  <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">Scheme</span>
+                  <strong className="text-slate-800 dark:text-slate-200 font-semibold">{conferenceData.bankDetails.scheme}</strong>
+                </div>
+                <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800 flex justify-between items-center pr-1">
                   <div>
                     <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">Account Number</span>
                     <strong className="text-slate-900 dark:text-white font-black select-all">{conferenceData.bankDetails.accountNumber}</strong>
                   </div>
                   <button
                     onClick={() => handleCopy(conferenceData.bankDetails.accountNumber, 'acc')}
-                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer"
+                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer border-none bg-transparent"
                   >
                     <FiCopy size={12} /> {copiedField === 'acc' ? 'Copied' : 'Copy'}
                   </button>
                 </div>
-                <div className="pt-1.5 border-t sm:border-t-0 flex justify-between items-center sm:pl-4">
+                <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800 flex justify-between items-center pr-1">
                   <div>
                     <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">IFSC Code</span>
                     <strong className="text-slate-900 dark:text-white font-black select-all">{conferenceData.bankDetails.ifscCode}</strong>
                   </div>
                   <button
                     onClick={() => handleCopy(conferenceData.bankDetails.ifscCode, 'ifsc')}
-                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer"
+                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer border-none bg-transparent"
                   >
                     <FiCopy size={12} /> {copiedField === 'ifsc' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800 flex justify-between items-center pr-1">
+                  <div>
+                    <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">MICR Code</span>
+                    <strong className="text-slate-900 dark:text-white font-black select-all">{conferenceData.bankDetails.micrCode}</strong>
+                  </div>
+                  <button
+                    onClick={() => handleCopy(conferenceData.bankDetails.micrCode, 'micr')}
+                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer border-none bg-transparent"
+                  >
+                    <FiCopy size={12} /> {copiedField === 'micr' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800 flex justify-between items-center pr-1">
+                  <div>
+                    <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">Customer ID</span>
+                    <strong className="text-slate-900 dark:text-white font-black select-all">{conferenceData.bankDetails.customerId}</strong>
+                  </div>
+                  <button
+                    onClick={() => handleCopy(conferenceData.bankDetails.customerId, 'cust')}
+                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer border-none bg-transparent"
+                  >
+                    <FiCopy size={12} /> {copiedField === 'cust' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800 flex justify-between items-center pr-1 sm:col-span-2">
+                  <div>
+                    <span className="text-slate-500 dark:text-slate-400 block text-[9px] uppercase font-bold tracking-wider">PAN (if required)</span>
+                    <strong className="text-slate-900 dark:text-white font-black select-all">{conferenceData.bankDetails.pan}</strong>
+                  </div>
+                  <button
+                    onClick={() => handleCopy(conferenceData.bankDetails.pan, 'pan')}
+                    className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-650 dark:hover:text-white flex items-center gap-1 text-[10px] cursor-pointer border-none bg-transparent"
+                  >
+                    <FiCopy size={12} /> {copiedField === 'pan' ? 'Copied' : 'Copy'}
                   </button>
                 </div>
               </div>

@@ -172,11 +172,15 @@ function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, p
               <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #1e293b;">
                 <tr>
                   <td style="padding: 4px 0; color: #475569;">Account Name:</td>
-                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">Indian Academy of Pediatrics Ranchi District Branch Jharkhand Paedicon 2016</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">INDIAN ACADEMY OF PAEDIATRICS RANCHI DISTRICT BRANCH JHARKHAND PAEDICON 2016</td>
                 </tr>
                 <tr>
-                  <td style="padding: 4px 0; color: #475569;">Bank Name:</td>
-                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">Axis Bank</td>
+                  <td style="padding: 4px 0; color: #475569;">Bank & Branch:</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">Axis Bank, Ratu Road Branch, Ranchi</td>
+                </tr>
+                <tr>
+                  <td style="padding: 4px 0; color: #475569;">Scheme:</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">INTRS - SPECIAL TRUST ACCOUNTS</td>
                 </tr>
                 <tr>
                   <td style="padding: 4px 0; color: #475569;">Account Number:</td>
@@ -185,6 +189,18 @@ function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, p
                 <tr>
                   <td style="padding: 4px 0; color: #475569;">IFSC Code:</td>
                   <td style="padding: 4px 0; font-weight: bold; text-align: right;">UTIH0001407</td>
+                </tr>
+                <tr>
+                  <td style="padding: 4px 0; color: #475569;">MICR Code:</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">834211005</td>
+                </tr>
+                <tr>
+                  <td style="padding: 4px 0; color: #475569;">Customer ID:</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">865369101</td>
+                </tr>
+                <tr>
+                  <td style="padding: 4px 0; color: #475569;">PAN (if required):</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">AAAAI1910L</td>
                 </tr>
                 <tr>
                   <td style="padding: 4px 0; color: #475569;">UPI ID:</td>

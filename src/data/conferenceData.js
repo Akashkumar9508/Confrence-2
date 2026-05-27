@@ -1,3 +1,5 @@
+import nehaImg from '../assets/neha.png';
+
 export const conferenceData = {
   id: "ezprc-2026",
   slug: "ezprc-2026",
@@ -47,11 +49,10 @@ export const conferenceData = {
   registrationStatus: "Registrations Open Soon",
   
   registrationFees: {
-    delegate: { fee: "Rs. 4000/-", label: "Delegate Fee" },
+    delegate: { fee: "Rs. 2500/-", label: "Delegate Fee" },
     pgStudent: { fee: "Rs. 2000/-", label: "PG Student Fee", note: "(must produce certificate from HOD)" },
     seniorCitizen: { fee: "Complementary", label: "Senior Citizen (Above 70 years)", note: "(but prior registration is mandatory)" },
-    accompanying: { fee: "Rs. 3000/-", label: "Accompanying Person" },
-    specialOffer: "IAP Members (other than Ranchi) and their accompanying person registering on or before 31st July will be entitled for One Night FREE accommodation (Twin Sharing) at any premium Hotel."
+    accompanying: { fee: "Rs. 2000/-", label: "Accompanying Person" }
   },
 
   contactNumber: "8789305854",
@@ -61,11 +62,15 @@ export const conferenceData = {
   brochurePDF: "https://drive.google.com/drive/folders/1P9fG562gO6wN2pP6G6kYpXyI6z8j4j3t",
 
   bankDetails: {
-    accountName: "Indian Academy of Pediatrics Ranchi District Branch Jharkhand Paedicon 2016",
+    accountName: "INDIAN ACADEMY OF PAEDIATRICS RANCHI DISTRICT BRANCH JHARKHAND PAEDICON 2016",
     accountNumber: "916010023281913",
     ifscCode: "UTIH0001407",
+    micrCode: "834211005",
+    customerId: "865369101",
+    scheme: "INTRS - SPECIAL TRUST ACCOUNTS",
     bankName: "Axis Bank",
-    branch: "Ranchi",
+    branch: "Ratu Road Branch, Ranchi",
+    pan: "AAAAI1910L",
     upiId: "9508369383@upi",
     upiQrImage: "/upi-qr.jpeg"
   },
@@ -96,8 +101,14 @@ export const conferenceData = {
     {
       name: "Dr Neha Singh",
       role: "Organising Secretary",
-      detail: "3rd East Zone Pediatric Rheumatology Conference (EZPRC 2026)",
-      image: "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=200&h=200"
+      phone: "8789305854",
+      image: nehaImg
+    },
+    {
+      name: "Dr Shaktipad Das",
+      role: "Co-Organising Secretary",
+      phone: "9711104834",
+      image: null
     }
   ],
 
@@ -116,7 +127,7 @@ export const conferenceData = {
     },
     {
       q: "What are the bank details for payment?",
-      a: "Payments can be made via Bank Transfer to Axis Bank, Ranchi. Account Name: Indian Academy of Pediatrics Ranchi District Branch Jharkhand Paedicon 2016, Account Number: 916010023281913, IFSC Code: UTIH0001407."
+      a: "Payments can be made via Bank Transfer to Axis Bank, Ratu Road Branch, Ranchi. Account Name: INDIAN ACADEMY OF PAEDIATRICS RANCHI DISTRICT BRANCH JHARKHAND PAEDICON 2016, Account Number: 916010023281913, IFSC Code: UTIH0001407, MICR Code: 834211005."
     }
   ]
 };
