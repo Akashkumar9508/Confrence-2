@@ -27,6 +27,7 @@ import logoImg from '../assets/logo.png';
 
 export default function Home() {
   const navigate = useNavigate();
+  const SHOW_SOUVENIR = false; // Set to true to show Souvenir Advertisement options
   const [activeFaq, setActiveFaq] = useState(null);
   const [activeTab, setActiveTab] = useState('sponsorship'); // 'sponsorship' | 'advertisement'
   const [copiedField, setCopiedField] = useState(null);
@@ -297,42 +298,46 @@ export default function Home() {
             Sponsorship Opportunities
           </span>
           <h2 className="font-display font-black text-2xl sm:text-4xl text-indigo-950 dark:text-white uppercase tracking-tight">
-            Sponsorship & Souvenir Tariff
+            {SHOW_SOUVENIR ? "Sponsorship & Souvenir Tariff" : "Sponsorship Tariff"}
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
-            Review sponsorship options and souvenir advertisement slots available for corporate partners and contributors.
+            {SHOW_SOUVENIR 
+              ? "Review sponsorship options and souvenir advertisement slots available for corporate partners and contributors."
+              : "Review sponsorship options available for corporate partners and contributors."}
           </p>
         </div>
 
         {/* Tab Controls */}
-        <div className="flex justify-center mb-8">
-          <div className="p-1 bg-slate-200/60 dark:bg-darkbg-card rounded-2xl border border-slate-300/40 dark:border-darkbg-border flex gap-1 shadow-inner">
-            <button
-              onClick={() => setActiveTab('sponsorship')}
-              className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
-                activeTab === 'sponsorship'
-                  ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
-            >
-              Sponsorship Tariff
-            </button>
-            <button
-              onClick={() => setActiveTab('advertisement')}
-              className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
-                activeTab === 'advertisement'
-                  ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
-            >
-              Souvenir Advertisement
-            </button>
+        {SHOW_SOUVENIR && (
+          <div className="flex justify-center mb-8">
+            <div className="p-1 bg-slate-200/60 dark:bg-darkbg-card rounded-2xl border border-slate-300/40 dark:border-darkbg-border flex gap-1 shadow-inner">
+              <button
+                onClick={() => setActiveTab('sponsorship')}
+                className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
+                  activeTab === 'sponsorship'
+                    ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                }`}
+              >
+                Sponsorship Tariff
+              </button>
+              <button
+                onClick={() => setActiveTab('advertisement')}
+                className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
+                  activeTab === 'advertisement'
+                    ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                }`}
+              >
+                Souvenir Advertisement
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Tab Contents */}
         <AnimatePresence mode="wait">
-          {activeTab === 'sponsorship' ? (
+          {!SHOW_SOUVENIR || activeTab === 'sponsorship' ? (
             <motion.div
               key="sponsorship-tab"
               initial={{ opacity: 0, y: 15 }}

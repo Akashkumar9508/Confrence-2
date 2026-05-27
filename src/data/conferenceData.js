@@ -62,7 +62,7 @@ export const conferenceData = {
   brochurePDF: "https://drive.google.com/drive/folders/1P9fG562gO6wN2pP6G6kYpXyI6z8j4j3t",
 
   bankDetails: {
-    accountName: "INDIAN ACADEMY OF PAEDIATRICS RANCHI DISTRICT BRANCH JHARKHAND PAEDICON 2016",
+    accountName: "Indian Academy of Pediatrics, Ranchi District Branch",
     accountNumber: "916010023281913",
     ifscCode: "UTIH0001407",
     micrCode: "834211005",
@@ -127,7 +127,7 @@ export const conferenceData = {
     },
     {
       q: "What are the bank details for payment?",
-      a: "Payments can be made via Bank Transfer to Axis Bank, Ratu Road Branch, Ranchi. Account Name: INDIAN ACADEMY OF PAEDIATRICS RANCHI DISTRICT BRANCH JHARKHAND PAEDICON 2016, Account Number: 916010023281913, IFSC Code: UTIH0001407, MICR Code: 834211005."
+      a: "Payments can be made via Bank Transfer to Axis Bank, Ratu Road Branch, Ranchi. Account Name: Indian Academy of Pediatrics, Ranchi District Branch, Account Number: 916010023281913, IFSC Code: UTIH0001407, MICR Code: 834211005."
     }
   ]
 };

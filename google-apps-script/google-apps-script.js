@@ -172,7 +172,7 @@ function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, p
               <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #1e293b;">
                 <tr>
                   <td style="padding: 4px 0; color: #475569;">Account Name:</td>
-                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">INDIAN ACADEMY OF PAEDIATRICS RANCHI DISTRICT BRANCH JHARKHAND PAEDICON 2016</td>
+                  <td style="padding: 4px 0; font-weight: bold; text-align: right;">Indian Academy of Pediatrics, Ranchi District Branch</td>
                 </tr>
                 <tr>
                   <td style="padding: 4px 0; color: #475569;">Bank & Branch:</td>
