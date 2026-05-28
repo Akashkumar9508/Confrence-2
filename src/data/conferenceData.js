@@ -71,8 +71,7 @@ export const conferenceData = {
     bankName: "Axis Bank",
     branch: "Ratu Road Branch, Ranchi",
     pan: "AAAAI1910L",
-    upiId: "9508369383@upi",
-    upiQrImage: "/upi-qr.jpeg"
+    upiId: "9508369383@upi"
   },
 
   sponsorshipTariff: [

@@ -33,7 +33,7 @@ export default function Home() {
   const [copiedField, setCopiedField] = useState(null);
   const [activeModalQr, setActiveModalQr] = useState(null);
 
-  const upiPayUrl = `upi://pay?pa=${conferenceData.bankDetails.upiId}&pn=${encodeURIComponent(conferenceData.bankDetails.accountName)}&am=2500.00&cu=INR&tn=EZPRC2026`;
+
 
   const handleCopy = (text, fieldName) => {
     navigator.clipboard.writeText(text);
@@ -482,14 +482,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: QR Codes & Payments */}
-          <div className="lg:col-span-7 bg-white dark:bg-darkbg-card border border-slate-200 dark:border-darkbg-border rounded-3xl p-6 sm:p-8 shadow-md flex flex-col justify-between space-y-6">
+          {/* Right Column: QR Code */}
+          <div className="lg:col-span-7 bg-white dark:bg-darkbg-card border border-slate-200 dark:border-darkbg-border rounded-3xl p-6 sm:p-8 shadow-md flex flex-col space-y-6">
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              
-              {/* Left Box: Form Register QR */}
-              <div className="flex flex-col items-center text-center p-4 bg-slate-50 dark:bg-brand-950/20 rounded-2xl border border-slate-100 dark:border-brand-900/10 h-full justify-between">
-                <div>
+            <div className="flex flex-col items-center text-center flex-1 p-4 bg-slate-50 dark:bg-brand-950/20 rounded-2xl border border-slate-100 dark:border-brand-900/10">
+                <div className="mb-3">
                   <span className="text-[10px] bg-indigo-100 dark:bg-brand-950/40 text-indigo-750 dark:text-brand-300 font-bold px-2 py-0.5 rounded uppercase tracking-wider">
                     Register Here
                   </span>
@@ -497,62 +494,26 @@ export default function Home() {
                 </div>
                 <div 
                   onClick={() => setActiveModalQr('register')}
-                  className="p-2.5 bg-white rounded-xl shadow-inner border border-slate-200/60 dark:border-brand-900/20 my-4 flex items-center justify-center cursor-zoom-in hover:scale-[1.03] transition-transform active:scale-[0.97]"
+                  className="flex-1 w-full p-3 bg-white rounded-xl shadow-inner border border-slate-200/60 dark:border-brand-900/20 flex items-center justify-center cursor-zoom-in hover:scale-[1.01] transition-transform active:scale-[0.99]"
                   title="Click to view full screen"
                 >
                   <QRCodeCanvas
                     value={conferenceData.googleFormLink}
-                    size={140}
+                    size={220}
                     bgColor={"#ffffff"}
                     fgColor={"#1e1b4b"}
                     level={"H"}
                     includeMargin={true}
+                    style={{ width: '100%', height: 'auto', maxWidth: '280px' }}
                   />
                 </div>
                 <button 
                   onClick={handleRegisterClick}
-                  className="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg cursor-pointer border-none"
+                  className="mt-3 w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-lg cursor-pointer border-none transition-colors"
                 >
                   Register Online
                 </button>
               </div>
-
-              {/* Right Box: Pay QR */}
-              <div className="flex flex-col items-center text-center p-4 bg-slate-50 dark:bg-brand-950/20 rounded-2xl border border-slate-100 dark:border-brand-900/10 h-full justify-between">
-                <div>
-                  <span className="text-[10px] bg-green-100 dark:bg-green-950/40 text-green-700 dark:text-green-300 font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                    Scan Here to Pay
-                  </span>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 leading-normal">UPI Transfer (BHIM/GPay)</p>
-                </div>
-                <div 
-                  onClick={() => setActiveModalQr('payment')}
-                  className="p-2.5 bg-white rounded-xl shadow-inner border border-slate-200/60 dark:border-brand-900/20 my-4 flex items-center justify-center cursor-zoom-in hover:scale-[1.03] transition-transform active:scale-[0.97]"
-                  title="Click to view full screen"
-                >
-                  {conferenceData.bankDetails.upiQrImage ? (
-                    <img
-                      src={conferenceData.bankDetails.upiQrImage}
-                      alt="UPI QR Code"
-                      className="w-[140px] h-[140px] object-contain rounded-lg"
-                    />
-                  ) : (
-                    <QRCodeCanvas
-                      value={upiPayUrl}
-                      size={140}
-                      bgColor={"#ffffff"}
-                      fgColor={"#047857"}
-                      level={"H"}
-                      includeMargin={true}
-                    />
-                  )}
-                </div>
-                <span className="text-[10px] text-green-700 dark:text-green-400 font-bold bg-green-50 dark:bg-green-950/40 px-2 py-1 rounded">
-                  UPI ID: {conferenceData.bankDetails.upiId}
-                </span>
-              </div>
-
-            </div>
 
             {/* Bank details bar at the bottom */}
             <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
@@ -727,10 +688,8 @@ export default function Home() {
               className="bg-white dark:bg-darkbg-card rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-slate-100 dark:border-darkbg-border flex flex-col items-center space-y-4 cursor-default"
             >
               <div className="w-full flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-                <span className={`text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wider ${
-                  activeModalQr === 'register' ? 'bg-indigo-100 text-indigo-700' : 'bg-green-100 text-green-700'
-                }`}>
-                  {activeModalQr === 'register' ? 'Registration Link' : 'UPI Payment Transfer'}
+                <span className="text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wider bg-indigo-100 text-indigo-700">
+                  Registration Link
                 </span>
                 <button
                   onClick={() => setActiveModalQr(null)}
@@ -742,29 +701,18 @@ export default function Home() {
               </div>
 
               <div className="p-4 bg-white rounded-2xl border border-slate-100 shadow-inner flex items-center justify-center my-4">
-                {activeModalQr === 'payment' && conferenceData.bankDetails.upiQrImage ? (
-                  <img
-                    src={conferenceData.bankDetails.upiQrImage}
-                    alt="UPI QR Code Fullscreen"
-                    className="w-[260px] h-[260px] object-contain rounded-lg"
-                  />
-                ) : (
-                  <QRCodeCanvas
-                    value={activeModalQr === 'register' ? conferenceData.googleFormLink : upiPayUrl}
-                    size={260}
-                    bgColor={"#ffffff"}
-                    fgColor={activeModalQr === 'register' ? "#1e1b4b" : "#047857"}
-                    level={"H"}
-                    includeMargin={true}
-                  />
-                )}
+                <QRCodeCanvas
+                  value={conferenceData.googleFormLink}
+                  size={260}
+                  bgColor={"#ffffff"}
+                  fgColor={"#1e1b4b"}
+                  level={"H"}
+                  includeMargin={true}
+                />
               </div>
 
               <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center leading-relaxed">
-                {activeModalQr === 'register' 
-                  ? 'Scan with your smartphone camera to open the Google Registration Form.' 
-                  : 'Scan with GPay, PhonePe, Paytm, BHIM, or any UPI app to complete your transaction.'
-                }
+                Scan with your smartphone camera to open the Google Registration Form.
               </p>
             </motion.div>
           </motion.div>
