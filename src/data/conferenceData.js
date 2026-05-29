@@ -59,7 +59,7 @@ export const conferenceData = {
 
   contactNumber: "8789305854",
   contactEmail: "Ezprc2026@gmail.com",
-  googleFormLink: "https://docs.google.com/forms/d/e/1FAIpQLSc0HpfpmCka9HDzeh6tcyjrtFsIhP-rkp5dSNRViBOVSaS2KA/viewform?usp=preview",
+  googleFormLink: "https://docs.google.com/forms/d/e/1FAIpQLScqLI-QtBQ7aLzUNqylET4n1qnkD7c6je63uLefZVVKSecRGg/viewform?usp=header",
   whatsappGroupLink: "https://chat.whatsapp.com/sample-group-link",
   brochurePDF: "https://drive.google.com/drive/folders/1P9fG562gO6wN2pP6G6kYpXyI6z8j4j3t",
 

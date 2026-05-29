@@ -36,20 +36,24 @@ function onFormSubmit(e) {
         "+91 9508369383",
         "Ranchi Medical College",
         "Male",
-        "Ranchi"
+        "Ranchi",
+        "TXN123456789",
+        "2500"
       ];
     } else {
       values = e.values;
     }
 
     const timestamp = values[0];
-    const fullName = values[1];      // B: Name
-    const designation = values[2];   // C: Designation
-    const email = values[3];         // D: Email address
-    const phoneNumber = values[4];   // E: Phone No
-    const placeOfWork = values[5];   // F: Place of work
-    const gender = values[6];        // G: Gender
-    const city = values[7];          // H: City
+    const fullName = values[1];        // B: Name
+    const designation = values[2];     // C: Designation
+    const email = values[3];           // D: Email address
+    const phoneNumber = values[4];     // E: Phone No
+    const placeOfWork = values[5];     // F: Place of work
+    const gender = values[6];          // G: Gender
+    const city = values[7];            // H: City
+    const transactionId = values[8] || "Not Provided";  // I: Transaction Id
+    const paidAmount = values[9] || "Not Provided";     // J: Paid Amount
     
     if (!email) {
       Logger.log("No email address provided in submission.");
@@ -57,7 +61,7 @@ function onFormSubmit(e) {
     }
 
     // 2. Build the HTML Email Template for the Participant
-    const participantHtml = getParticipantEmailHtml(fullName, designation, placeOfWork, gender, city, phoneNumber);
+    const participantHtml = getParticipantEmailHtml(fullName, designation, placeOfWork, gender, city, phoneNumber, transactionId, paidAmount);
     
     // 3. Send confirmation email to the participant
     MailApp.sendEmail({
@@ -69,7 +73,7 @@ function onFormSubmit(e) {
     });
 
     // 4. Build notification HTML for the Organizers
-    const adminHtml = getAdminEmailHtml(fullName, designation, email, phoneNumber, placeOfWork, gender, city, timestamp);
+    const adminHtml = getAdminEmailHtml(fullName, designation, email, phoneNumber, placeOfWork, gender, city, timestamp, transactionId, paidAmount);
 
     // 5. Send notification to the Organizer
     MailApp.sendEmail({
@@ -89,7 +93,7 @@ function onFormSubmit(e) {
 /**
  * Generates HTML email for the participant with premium styling (Purple/Blue brand colors)
  */
-function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, phone) {
+function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, phone, transactionId, paidAmount) {
   return `
   <!DOCTYPE html>
   <html>
@@ -162,6 +166,14 @@ function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, p
                 <tr>
                   <td style="padding: 6px 0; font-size: 13px; color: #6b7280;">Contact Number:</td>
                   <td style="padding: 6px 0; font-size: 13px; color: #1e1b4b; font-weight: bold; text-align: right;">${phone}</td>
+                </tr>
+                <tr style="background-color: #faf5ff;">
+                  <td style="padding: 6px 0; font-size: 13px; color: #6b7280;">Transaction ID:</td>
+                  <td style="padding: 6px 0; font-size: 13px; color: #6d28d9; font-weight: bold; text-align: right;">${transactionId}</td>
+                </tr>
+                <tr style="background-color: #faf5ff;">
+                  <td style="padding: 6px 0; font-size: 13px; color: #6b7280;">Amount Paid:</td>
+                  <td style="padding: 6px 0; font-size: 13px; color: #166534; font-weight: bold; text-align: right;">Rs. ${paidAmount}/-</td>
                 </tr>
               </table>
             </div>
@@ -238,7 +250,7 @@ function getParticipantEmailHtml(name, designation, placeOfWork, gender, city, p
 /**
  * Generates admin notification email for the organizers
  */
-function getAdminEmailHtml(name, designation, email, phone, placeOfWork, gender, city, time) {
+function getAdminEmailHtml(name, designation, email, phone, placeOfWork, gender, city, time, transactionId, paidAmount) {
   return `
   <!DOCTYPE html>
   <html>
@@ -279,6 +291,14 @@ function getAdminEmailHtml(name, designation, email, phone, placeOfWork, gender,
           <tr>
             <td style="padding: 8px; border: 1px solid #eeeeee; font-weight: bold;">Submission Time:</td>
             <td style="padding: 8px; border: 1px solid #eeeeee;">${time}</td>
+          </tr>
+          <tr style="background-color: #faf5ff;">
+            <td style="padding: 8px; border: 1px solid #eeeeee; font-weight: bold; color: #6d28d9;">Transaction ID:</td>
+            <td style="padding: 8px; border: 1px solid #eeeeee; font-weight: bold; color: #6d28d9;">${transactionId}</td>
+          </tr>
+          <tr style="background-color: #f0fdf4;">
+            <td style="padding: 8px; border: 1px solid #eeeeee; font-weight: bold; color: #166534;">Amount Paid:</td>
+            <td style="padding: 8px; border: 1px solid #eeeeee; font-weight: bold; color: #166534;">Rs. ${paidAmount}/-</td>
           </tr>
         </table>
         
