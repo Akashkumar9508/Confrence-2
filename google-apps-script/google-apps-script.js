@@ -16,7 +16,7 @@
  */
 
 // Configuration
-const ORGANIZER_EMAIL = "iapranchi@gmail.com"; 
+const ORGANIZER_EMAIL = "Ezprc2026@gmail.com"; 
 const CONFERENCE_NAME = "3rd East Zone Paediatric Rheumatology Conference (EZPRC 2026)";
 const VENUE = "The Royal Retreat, Ranchi";
 const DATES = "31st October & 1st November 2026";
@@ -32,7 +32,7 @@ function onFormSubmit(e) {
         new Date().toISOString(),
         "John Doe",
         "Senior Pediatrician",
-        "iapranchi@gmail.com",
+        "Ezprc2026@gmail.com",
         "+91 9508369383",
         "Ranchi Medical College",
         "Male",

@@ -1,4 +1,5 @@
 import nehaImg from '../assets/neha.png';
+import shaktipadImg from '../assets/image copy 2.png';
 
 export const conferenceData = {
   id: "ezprc-2026",
@@ -57,7 +58,7 @@ export const conferenceData = {
   },
 
   contactNumber: "8789305854",
-  contactEmail: "iapranchi@gmail.com",
+  contactEmail: "Ezprc2026@gmail.com",
   googleFormLink: "https://docs.google.com/forms/d/e/1FAIpQLSc0HpfpmCka9HDzeh6tcyjrtFsIhP-rkp5dSNRViBOVSaS2KA/viewform?usp=preview",
   whatsappGroupLink: "https://chat.whatsapp.com/sample-group-link",
   brochurePDF: "https://drive.google.com/drive/folders/1P9fG562gO6wN2pP6G6kYpXyI6z8j4j3t",
@@ -108,7 +109,7 @@ export const conferenceData = {
       name: "Dr Shaktipad Das",
       role: "Co-Organising Secretary",
       phone: "9711104834",
-      image: null
+      image: shaktipadImg
     }
   ],
 
