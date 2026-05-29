@@ -113,17 +113,17 @@ export default function Home() {
             transition={{ delay: 0.2 }}
             className="max-w-2xl mx-auto"
           >
-            <p className="text-slate-500 dark:text-slate-455 text-xs sm:text-sm uppercase font-bold tracking-wider mb-2">
+            {/* <p className="text-slate-500 dark:text-slate-455 text-xs sm:text-sm uppercase font-bold tracking-wider mb-2">
               Conference Theme
-            </p>
+            </p> */}
             <p className="font-display font-extrabold text-lg sm:text-2xl text-brand-600 dark:text-accent-400 bg-brand-50/50 dark:bg-brand-950/25 py-2 px-4 rounded-xl border border-brand-100/50 dark:border-brand-900/20 inline-block shadow-inner">
               "{conferenceData.theme}"
             </p>
           </motion.div>
 
-          <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 max-w-xl mx-auto uppercase tracking-wide">
+          {/* <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 max-w-xl mx-auto uppercase tracking-wide">
             Organised by: {conferenceData.organisedBy}
-          </p>
+          </p> */}
 
           {/* Dates & Venue Details Card */}
           <motion.div
@@ -291,128 +291,130 @@ export default function Home() {
       {/* ==================================================
           3. SPONSORSHIP & ADVERTISING RATES (interactive tabs)
           ================================================== */}
-      <section id="sponsorship" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        
-        <div className="text-center mb-10 space-y-2">
-          <span className="text-brand-600 dark:text-accent-400 text-xs sm:text-sm font-bold uppercase tracking-widest">
-            Sponsorship Opportunities
-          </span>
-          <h2 className="font-display font-black text-2xl sm:text-4xl text-indigo-950 dark:text-white uppercase tracking-tight">
-            {SHOW_SOUVENIR ? "Sponsorship & Souvenir Tariff" : "Sponsorship Tariff"}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
-            {SHOW_SOUVENIR 
-              ? "Review sponsorship options and souvenir advertisement slots available for corporate partners and contributors."
-              : "Review sponsorship options available for corporate partners and contributors."}
-          </p>
-        </div>
-
-        {/* Tab Controls */}
-        {SHOW_SOUVENIR && (
-          <div className="flex justify-center mb-8">
-            <div className="p-1 bg-slate-200/60 dark:bg-darkbg-card rounded-2xl border border-slate-300/40 dark:border-darkbg-border flex gap-1 shadow-inner">
-              <button
-                onClick={() => setActiveTab('sponsorship')}
-                className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
-                  activeTab === 'sponsorship'
-                    ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                }`}
-              >
-                Sponsorship Tariff
-              </button>
-              <button
-                onClick={() => setActiveTab('advertisement')}
-                className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
-                  activeTab === 'advertisement'
-                    ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                }`}
-              >
-                Souvenir Advertisement
-              </button>
-            </div>
+      {conferenceData.showSponsorship && (
+        <section id="sponsorship" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          
+          <div className="text-center mb-10 space-y-2">
+            <span className="text-brand-600 dark:text-accent-400 text-xs sm:text-sm font-bold uppercase tracking-widest">
+              Sponsorship Opportunities
+            </span>
+            <h2 className="font-display font-black text-2xl sm:text-4xl text-indigo-950 dark:text-white uppercase tracking-tight">
+              {SHOW_SOUVENIR ? "Sponsorship & Souvenir Tariff" : "Sponsorship Tariff"}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
+              {SHOW_SOUVENIR 
+                ? "Review sponsorship options and souvenir advertisement slots available for corporate partners and contributors."
+                : "Review sponsorship options available for corporate partners and contributors."}
+            </p>
           </div>
-        )}
 
-        {/* Tab Contents */}
-        <AnimatePresence mode="wait">
-          {!SHOW_SOUVENIR || activeTab === 'sponsorship' ? (
-            <motion.div
-              key="sponsorship-tab"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-7xl mx-auto"
-            >
-              {conferenceData.sponsorshipTariff.map((item) => (
-                <div 
-                  key={item.id} 
-                  className="bg-white dark:bg-darkbg-card border border-slate-200/80 dark:border-darkbg-border rounded-2xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group hover:border-brand-300 dark:hover:border-brand-800"
+          {/* Tab Controls */}
+          {SHOW_SOUVENIR && (
+            <div className="flex justify-center mb-8">
+              <div className="p-1 bg-slate-200/60 dark:bg-darkbg-card rounded-2xl border border-slate-300/40 dark:border-darkbg-border flex gap-1 shadow-inner">
+                <button
+                  onClick={() => setActiveTab('sponsorship')}
+                  className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
+                    activeTab === 'sponsorship'
+                      ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                  }`}
                 >
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/60 flex items-center justify-center text-brand-600 dark:text-accent-400">
-                      {item.sector.includes("Sponsor") ? <FiStar size={20} /> : <FiBriefcase size={20} />}
-                    </div>
-                    <h4 className="font-display font-black text-xs sm:text-sm text-indigo-950 dark:text-white uppercase leading-snug">
-                      {item.sector}
-                    </h4>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-slate-50 dark:border-slate-800/80">
-                    <span className="text-[10px] text-slate-400 dark:text-slate-500 block font-semibold uppercase tracking-wider mb-0.5">Amount</span>
-                    <strong className="text-brand-600 dark:text-accent-400 font-display font-black text-base">
-                      {item.amount}
-                    </strong>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="advertisement-tab"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
-            >
-              {conferenceData.souvenirAdvertisement.map((item) => (
-                <div 
-                  key={item.id} 
-                  className="bg-white dark:bg-darkbg-card border border-slate-200/80 dark:border-darkbg-border rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group hover:border-brand-300 dark:hover:border-brand-800"
+                  Sponsorship Tariff
+                </button>
+                <button
+                  onClick={() => setActiveTab('advertisement')}
+                  className={`px-5 py-2.5 rounded-xl font-display font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer border-none ${
+                    activeTab === 'advertisement'
+                      ? 'bg-white dark:bg-brand-600 text-brand-900 dark:text-white shadow-md'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                  }`}
                 >
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-accent-50 dark:bg-brand-950/60 flex items-center justify-center text-accent-600 dark:text-accent-400">
-                      <FiTrendingUp size={20} />
-                    </div>
-                    <h4 className="font-display font-black text-sm text-indigo-950 dark:text-white uppercase leading-snug">
-                      {item.item}
-                    </h4>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-slate-50 dark:border-slate-800/80">
-                    <span className="text-[10px] text-slate-400 dark:text-slate-500 block font-semibold uppercase tracking-wider mb-0.5">Rate</span>
-                    <strong className="text-brand-600 dark:text-accent-400 font-display font-black text-base">
-                      {item.amount}
-                    </strong>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
+                  Souvenir Advertisement
+                </button>
+              </div>
+            </div>
           )}
-        </AnimatePresence>
 
-        {/* CTA for Sponsorship */}
-        <div className="mt-10 text-center">
-          <button
-            onClick={handleWhatsAppInquiry}
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-extrabold text-sm rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer border-none"
-          >
-            Inquire About Sponsorships <FiChevronRight />
-          </button>
-        </div>
+          {/* Tab Contents */}
+          <AnimatePresence mode="wait">
+            {!SHOW_SOUVENIR || activeTab === 'sponsorship' ? (
+              <motion.div
+                key="sponsorship-tab"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.25 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-7xl mx-auto"
+              >
+                {conferenceData.sponsorshipTariff.map((item) => (
+                  <div 
+                    key={item.id} 
+                    className="bg-white dark:bg-darkbg-card border border-slate-200/80 dark:border-darkbg-border rounded-2xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group hover:border-brand-300 dark:hover:border-brand-800"
+                  >
+                    <div className="space-y-3">
+                      <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/60 flex items-center justify-center text-brand-600 dark:text-accent-400">
+                        {item.sector.includes("Sponsor") ? <FiStar size={20} /> : <FiBriefcase size={20} />}
+                      </div>
+                      <h4 className="font-display font-black text-xs sm:text-sm text-indigo-950 dark:text-white uppercase leading-snug">
+                        {item.sector}
+                      </h4>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-slate-50 dark:border-slate-800/80">
+                      <span className="text-[10px] text-slate-400 dark:text-slate-500 block font-semibold uppercase tracking-wider mb-0.5">Amount</span>
+                      <strong className="text-brand-600 dark:text-accent-400 font-display font-black text-base">
+                        {item.amount}
+                      </strong>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="advertisement-tab"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.25 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
+              >
+                {conferenceData.souvenirAdvertisement.map((item) => (
+                  <div 
+                    key={item.id} 
+                    className="bg-white dark:bg-darkbg-card border border-slate-200/80 dark:border-darkbg-border rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group hover:border-brand-300 dark:hover:border-brand-800"
+                  >
+                    <div className="space-y-3">
+                      <div className="w-10 h-10 rounded-xl bg-accent-50 dark:bg-brand-950/60 flex items-center justify-center text-accent-600 dark:text-accent-400">
+                        <FiTrendingUp size={20} />
+                      </div>
+                      <h4 className="font-display font-black text-sm text-indigo-950 dark:text-white uppercase leading-snug">
+                        {item.item}
+                      </h4>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-slate-50 dark:border-slate-800/80">
+                      <span className="text-[10px] text-slate-400 dark:text-slate-500 block font-semibold uppercase tracking-wider mb-0.5">Rate</span>
+                      <strong className="text-brand-600 dark:text-accent-400 font-display font-black text-base">
+                        {item.amount}
+                      </strong>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-      </section>
+          {/* CTA for Sponsorship */}
+          <div className="mt-10 text-center">
+            <button
+              onClick={handleWhatsAppInquiry}
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-extrabold text-sm rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer border-none"
+            >
+              Inquire About Sponsorships <FiChevronRight />
+            </button>
+          </div>
+
+        </section>
+      )}
 
       {/* ==================================================
           4. REGISTRATION HUBS & ACCOUNT DETAILS
@@ -633,7 +635,9 @@ export default function Home() {
             </h3>
             
             <div className="space-y-3">
-              {conferenceData.faqs.map((faq, idx) => (
+              {conferenceData.faqs
+                .filter(faq => conferenceData.showSponsorship || !faq.q.toLowerCase().includes('sponsor'))
+                .map((faq, idx) => (
                 <div 
                   key={idx}
                   className="rounded-xl border border-slate-200 dark:border-darkbg-border bg-white dark:bg-darkbg-card overflow-hidden"

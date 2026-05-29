@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent-950/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${conferenceData.showSponsorship ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-12 mb-12`}>
           
           {/* Col 1: About Info */}
           <div className="space-y-4">
@@ -55,11 +55,13 @@ export default function Footer() {
                   <FiArrowRight size={14} className="text-slate-500" /> Invitation Letter
                 </button>
               </li>
-              <li>
-                <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 transition-colors flex items-center gap-1.5 cursor-pointer">
-                  <FiArrowRight size={14} className="text-slate-500" /> Sponsorship & Tariff
-                </button>
-              </li>
+              {conferenceData.showSponsorship && (
+                <li>
+                  <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 transition-colors flex items-center gap-1.5 cursor-pointer">
+                    <FiArrowRight size={14} className="text-slate-500" /> Sponsorship & Tariff
+                  </button>
+                </li>
+              )}
               <li>
                 <button onClick={() => handleNavClick('registration')} className="hover:text-brand-400 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <FiArrowRight size={14} className="text-slate-500" /> Fees & Payments
@@ -74,33 +76,35 @@ export default function Footer() {
           </div>
 
           {/* Col 3: Sponsorship Info */}
-          <div>
-            <h3 className="font-display font-bold text-white text-base mb-6 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-8 after:h-[2px] after:bg-brand-500">
-              Sponsorship Packages
-            </h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
-                  <FiArrowRight size={14} className="text-slate-500" /> Platinum Sponsor (₹8,00,000)
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
-                  <FiArrowRight size={14} className="text-slate-500" /> Diamond Sponsor (₹5,00,000)
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
-                  <FiArrowRight size={14} className="text-slate-500" /> Gold Sponsor (₹3,00,000)
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
-                  <FiArrowRight size={14} className="text-slate-500" /> Premium Stall (₹2,00,000)
-                </button>
-              </li>
-            </ul>
-          </div>
+          {conferenceData.showSponsorship && (
+            <div>
+              <h3 className="font-display font-bold text-white text-base mb-6 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-8 after:h-[2px] after:bg-brand-500">
+                Sponsorship Packages
+              </h3>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
+                    <FiArrowRight size={14} className="text-slate-500" /> Platinum Sponsor (₹8,00,000)
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
+                    <FiArrowRight size={14} className="text-slate-500" /> Diamond Sponsor (₹5,00,000)
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
+                    <FiArrowRight size={14} className="text-slate-500" /> Gold Sponsor (₹3,00,000)
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleNavClick('sponsorship')} className="hover:text-brand-400 text-left transition-colors flex items-center gap-1.5 cursor-pointer">
+                    <FiArrowRight size={14} className="text-slate-500" /> Premium Stall (₹2,00,000)
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
 
           {/* Col 4: Contact Us */}
           <div>

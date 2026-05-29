@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiMenu, FiX, FiArrowRight } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import useDarkMode from '../hooks/useDarkMode';
+import { conferenceData } from '../data/conferenceData';
 
 export default function Navbar() {
   const [theme, toggleTheme] = useDarkMode();
@@ -54,10 +55,10 @@ export default function Navbar() {
   const navLinks = [
     { label: 'Home', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
     { label: 'Invitation', action: () => handleNavClick('invitation') },
-    { label: 'Sponsorship & Tariff', action: () => handleNavClick('sponsorship') },
+    conferenceData.showSponsorship && { label: 'Sponsorship & Tariff', action: () => handleNavClick('sponsorship') },
     { label: 'Fees & Payments', action: () => handleNavClick('registration') },
     { label: 'FAQ & Venue', action: () => handleNavClick('faq') },
-  ];
+  ].filter(Boolean);
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${

@@ -2,6 +2,7 @@ import nehaImg from '../assets/neha.png';
 
 export const conferenceData = {
   id: "ezprc-2026",
+  showSponsorship: false,
   slug: "ezprc-2026",
   title: "3rd East Zone Paediatric Rheumatology Conference (EZPRC 2026)",
   shortTitle: "EZPRC 2026",
